@@ -47,7 +47,7 @@
     <!-- Collapsible wrapper -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <!-- Navbar brand -->
-      <a class="navbar-brand mt-2 mt-lg-0" href="{%url 'home'%}">
+      <a class="navbar-brand mt-2 mt-lg-0" href="{%url 'home' %}">
         <img
           src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
           height="15"
@@ -152,7 +152,7 @@
 
 <div class="d-flex justify-content-center gap-2 mt-5 mb-5">
   {%for kurs in curs%}
-<a href="{%url 'lesson_to_curse' kurs.id%}" type="button" class="btn btn-primary" data-mdb-ripple-init>{{ kurs.name }}</a>
+<a href="{% url 'lesson_to_curse' pk=kurs.pk %}" type="button" class="btn btn-primary" data-mdb-ripple-init>{{ kurs.name }}</a>
   {%endfor%}
   </div>
 
@@ -168,12 +168,12 @@
 
   <div class="col">
     <div class="card h-100">
-        <a href="">
+<a href="{% url 'lesson_detail' leson.id %}">
       <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/044.webp" class="card-img-top" alt="Skyscrapers"/>
                 </a>
 
           <div class="card-body">
-        <a href="{}">
+        <a href="url 'lesson_detail' leson.id">
         <h5 class="card-title">{{leson.name}}</h5>
           </a>
         <p class="card-text">

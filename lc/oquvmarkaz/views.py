@@ -8,16 +8,17 @@ def home(request):
     lesons=Lesson.objects.all()
     return render(request,'index.html',{'curs':curs,'lesons':lesons})
 
-def lesson_detail(request, id):
-    lesson = get_object_or_404(Lesson, id=id)
+def lesson_detail(request, pk):
+    lesson = get_object_or_404(Lesson, pk=pk)
     return render(request, 'kurslar.html', {'lesson': lesson})
 
-def lesson_to_curse(request,pk):
-    leson=get_object_or_404(Lesson,pk=pk)
-    curs=Curs.objects.all()
-    context= {'leson':leson,
-     'curs':curs}
-    return render(request,'home.html',context)
+def lesson_to_curse(request, pk):
+    leson = Lesson.objects.filter(pk=pk)
+    curs = Curs.objects.all()
+    context = {'leson': leson, 'curs': curs}
+    return render(request, 'index.html', context)
+
+    return render(request,'index.html',context)
 # def home(request):
 #     curs = Curs.objects.all()  # Barcha Curs obyektlarini olish
 #     lesson = Lesson.objects.all()  # Barcha Lesson obyektlarini olish
