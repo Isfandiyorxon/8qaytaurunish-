@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Curs,Lesson
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404,redirect
+from .forms import forms,LesonForm
 
 # Create your views here.
 def home(request):
@@ -23,3 +24,16 @@ def lesson_to_curse(request, pk):
 #     curs = Curs.objects.all()  # Barcha Curs obyektlarini olish
 #     lesson = Lesson.objects.all()  # Barcha Lesson obyektlarini olish
 #     return render(request, 'index.html', {'curs': curs, 'lesson': lesson})
+
+def add_lesson(request):
+    if request.method=='POST':
+        forms=LesonForm(data=request.POST,files=request.FILES)
+        if forms.is_valid():
+            leson=forms.create()
+            return redirect('lesson_detail',pk=leson.pk)
+    else:
+            forms=LesonForm()
+    contex={
+                'forms':forms
+            }
+    return render(request,'add_leson.html',contex)
